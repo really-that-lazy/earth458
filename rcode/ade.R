@@ -9,11 +9,11 @@ graphics.off()
 #Model Parameters
 ##############################################################
 Cr = 1.0	   #Courant Number
-L = 2		   #Length of Problem (m) Make it a little longer than the point of interest
+L = 12		   #Length of Problem (m) Make it a little longer than the point of interest
 dz = ceiling(L/10)/10  #Discretization (m)
 R = 1.             #Retardation Factor
-disp = 1.0E-10/R      #Dispersion constant (m^2/s)
-u = 2.0 /R	   #Velocity Left to Right (m/s) 
+disp = 0.1/R      #Dispersion constant (m^2/s)
+u = 0.5 /R	   #Velocity Left to Right (m/s) 
 Runtime = 1.5*L/u   #Solution Durration in (s) May need to edit this value to get correct values
 #Runtime = 1E+12
 ##############################################################
@@ -23,7 +23,7 @@ Runtime = 1.5*L/u   #Solution Durration in (s) May need to edit this value to ge
 LeftHandBC = 1  #Left hand boundary conditions
 		#1 = Constant Concentration
 		#2 = Free Flux Boundary (i.e. open boundary)
-LeftHandC = 15   #Left hand boundary concentration (only for constant concentration conditions)
+LeftHandC = 1   #Left hand boundary concentration (only for constant concentration conditions)
 ###---Right Hand Conditions---################################
 RightHandBC = 2  #Right hand boundary conditions
                  #1 = Constant Concentration
@@ -62,7 +62,7 @@ prettyplot = TRUE   #Plots specific values
 
 Plot_Time = c(Runtime/10,3*Runtime/10,Runtime/2,7*Runtime/10, 9*Runtime/10)  #Output times for pretty plots must be less than Runtime
 #Plot_Location = c(L/5,2*L/5,3*L/5,4*L/5)          #Must be greater than 0
-Plot_Location = c(0.5,1.5)
+Plot_Location = c(5,10)
 ##################
 #if(simpleplot){X11()}
 ##################
