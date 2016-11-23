@@ -11,7 +11,7 @@ graphics.off()
 Cr = 1.0	   #Courant Number
 L = 20		   #Length of Problem (m) Make it a little longer than the point of interest
 dz = ceiling(L/10)/10  #Discretization (m)
-R = 1.             #Retardation Factor
+R = 2.             #Retardation Factor
 disp = 0.01/R      #Dispersion constant (m^2/s)
 u = 1.0 /R	   #Velocity Left to Right (m/s) 
 Runtime = 1.5*L/u   #Solution Durration in (s) May need to edit this value to get correct values
@@ -45,7 +45,7 @@ BackgroundC = 0  #Background Concentration for simulation (mg/L)
 StartOfPlume = 2 #This is the start of the Plume (m) 
 EndOfPlume = 4    #This is the ending value of the Plume (m) 
 PlumeC = 1       #Concentration of Plume (mg/L)
-ConstantPlume = 1   #Constant Source Concentration
+ConstantPlume = 2   #Constant Source Concentration
 		    #1 = Plume is Constant Source (i.e. it will always be there)
 		    #2 = Plume is Instaneous Source
 

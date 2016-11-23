@@ -8,12 +8,39 @@ graphics.off()
 ##############################################################
 #Model Parameters
 ##############################################################
+n = 0.30
+## porosity
+Diffusion = 1e-6
+## m/s
+wTort = 0.8
+## tortuosity
+alpha = 0.01
+## m^2/s
+## Dispersivity
+k = 1e-10
+## m/s
+
+
+h2 = 15
+## m
+h1 = 10
+## m
+dL = 7
+## m
+dH = h2-h1
+
+
+v = -(k*(dH/dL))/n
+cat('v: ', v)
+D_h = (alpha*v) + (Diffusion*wTort)
+cat('\nD_h, ', D_h)
+
 Cr = 1.0	   #Courant Number
-L = 20		   #Length of Problem (m) Make it a little longer than the point of interest
+L = dL		   #Length of Problem (m) Make it a little longer than the point of interest
 dz = ceiling(L/10)/10  #Discretization (m)
 R = 1.             #Retardation Factor
-disp = 0.01/R      #Dispersion constant (m^2/s)
-u = 1.0 /R	   #Velocity Left to Right (m/s) 
+disp = dH/R      #Dispersion constant (m^2/s)
+u = v/R	   #Velocity Left to Right (m/s) 
 Runtime = 1.5*L/u   #Solution Durration in (s) May need to edit this value to get correct values
 #Runtime = 1E+12
 ##############################################################
@@ -34,7 +61,8 @@ RightHandC = 0   #Right hand boundary condition (only for constant concentration
 #Time Stepping Parameters
 ##############################################################
 #dt = (Cr*dz/u)/5  #Time step
-dt = Runtime/800
+dt = Runtime/8000
+cat('\ndt ', dt)
 inter = Runtime/dt      #Number of simultation timesteps
 
 ##############################################################
@@ -44,7 +72,7 @@ BackgroundC = 0  #Background Concentration for simulation (mg/L)
 
 StartOfPlume = 2 #This is the start of the Plume (m) 
 EndOfPlume = 4    #This is the ending value of the Plume (m) 
-PlumeC = 1       #Concentration of Plume (mg/L)
+PlumeC = 0       #Concentration of Plume (mg/L)
 ConstantPlume = 1   #Constant Source Concentration
 		    #1 = Plume is Constant Source (i.e. it will always be there)
 		    #2 = Plume is Instaneous Source
@@ -62,7 +90,7 @@ prettyplot = TRUE   #Plots specific values
 
 Plot_Time = c(Runtime/10,3*Runtime/10,Runtime/2,7*Runtime/10, 9*Runtime/10)  #Output times for pretty plots must be less than Runtime
 #Plot_Location = c(L/5,2*L/5,3*L/5,4*L/5)          #Must be greater than 0
-Plot_Location = c(5,10)
+Plot_Location = c(2,7)
 ##################
 #if(simpleplot){X11()}
 ##################
